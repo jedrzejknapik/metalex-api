@@ -20,9 +20,10 @@ export class AuthController {
     return req.user;
   }
 
-  @Get('profile')
+  @Get('me')
   @UseGuards(JwtAuthGuard)
-  status(@Req() req: Request) {
-    console.log(req);
+  user(@Req() req: Request) {
+    const { id, name } = req.user as any;
+    return { id, username: name };
   }
 }
