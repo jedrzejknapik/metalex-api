@@ -1,0 +1,25 @@
+name: SSH Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass && sudo apt install openssh-server
+
+    - name: Deploy via SSH
+      env:
+        SSH_PASSWORD: ${{ secrets.PASSWORD }}
+        SSH_ADDRESS: ${{ secrets.IP_ADDRESS }}
+      run: |
+        run: |
+        sshpass -p "$SSH_PASSWORD" ssh -T -o StrictHostKeyChecking=no $SSH_ADDRESS 'cd /home/ubuntu/metalex/metalex-api && sudo npm install -g yarn && yarn global add pm2 && git pull && yarn && /home/linuxbrew/.linuxbrew/bin/pm2 restart 2'
