@@ -1,8 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from './Role';
 
 @Entity({ name: 'users' })
 export class User {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ unique: true })
@@ -11,9 +12,6 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  createdAt: Date;
-
-  @Column({ nullable: true })
-  authStrategy: string;
+  @ManyToOne(() => Role, (role) => role.users)
+  role: Role;
 }

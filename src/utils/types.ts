@@ -20,3 +20,12 @@ export type CreateProductParams = {
   imageRef: string;
   category: Category;
 };
+
+export enum RoleEnum {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+}
+
+export type CreateRoleParams = {
+  name: RoleEnum;
+};
