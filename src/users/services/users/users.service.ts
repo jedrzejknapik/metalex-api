@@ -2,7 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../../typeorm/entities/User';
-import { CreateUserParams, UpdateUserParams } from '../../../utils/types';
+import {
+  CreateRoleParams,
+  CreateUserParams,
+  RoleEnum,
+  UpdateUserParams,
+} from '../../../utils/types';
+import { Role } from '../../../typeorm/entities/Role';
 
 @Injectable()
 export class UsersService {
@@ -10,16 +16,20 @@ export class UsersService {
 
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(Role) private roleRepository: Repository<Role>,
   ) {}
 
   findUsers() {
-    this.userRepository.find();
+    return this.userRepository.find();
   }
 
-  createUser(userDetails: CreateUserParams) {
+  async createUser(userDetails: CreateUserParams) {
+    const userRole = (await this.findRoles()).find(
+      (role) => role.name === RoleEnum.ADMIN,
+    );
     const newUser = this.userRepository.create({
       ...userDetails,
-      createdAt: new Date(),
+      role: userRole,
     });
 
     return this.userRepository.save(newUser);
@@ -35,5 +45,14 @@ export class UsersService {
 
   deleteUser(id: number) {
     return this.userRepository.delete({ id });
+  }
+
+  findRoles() {
+    return this.roleRepository.find();
+  }
+
+  createRole(roleDetails: CreateRoleParams) {
+    const newRole = this.roleRepository.create(roleDetails);
+    return this.roleRepository.save(newRole);
   }
 }

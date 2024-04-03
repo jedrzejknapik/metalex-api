@@ -11,7 +11,9 @@ import {
 import { ProductsService } from '../../services/products/products.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { CreateProductDto } from '../../dtos/CreateProductDto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Order')
 @Controller('products')
 export class ProductsController {
   constructor(
