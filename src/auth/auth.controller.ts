@@ -4,6 +4,7 @@ import { LocalGuard } from './guards/local.guard';
 import { Request } from 'express';
 import { AuthPayloadDto } from './dto/auth.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from './guards/jwt.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -22,12 +23,13 @@ export class AuthController {
   }
 
   @Get('me')
+  @UseGuards(JwtAuthGuard)
   user(@Req() req: Request) {
-    if (req.user) {
-      const { id, name } = req.user as any;
-      return { id, username: name };
-    }
+    console.log('user: ', req.user);
 
-    return null;
+    if (req.user) {
+      const { id, name, role } = req.user as any;
+      return { id, username: name, role: role };
+    }
   }
 }

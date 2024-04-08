@@ -1,14 +1,20 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { OrderPosition } from './OrderPosition';
 
-@Entity({ name: 'categories' })
-export class Category {
+@Entity({ name: 'colors' })
+export class Color {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.category)
+  @Column()
+  value: string;
+
+  @Column({ nullable: true })
+  imageRef: string;
+
+  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.color)
   orderPositions: OrderPosition[];
 }

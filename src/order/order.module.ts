@@ -1,15 +1,32 @@
 import { Module } from '@nestjs/common';
-import { ProductsController } from './controllers/products/products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Category } from '../typeorm/entities/Category';
-import { Product } from '../typeorm/entities/Product';
-import { CategoriesController } from './controllers/categories/categories.controller';
-import { ProductsService } from './services/products/products.service';
-import { CategoriesService } from './services/categories/categories.service';
+import { OrderService } from './services/order.service';
+import { OrderController } from './controllers/order.controller';
+import { Color } from '../typeorm/entities/Color';
+import { Customer } from '../typeorm/entities/Customer';
+import { Material } from '../typeorm/entities/Material';
+import { Order } from '../typeorm/entities/Order';
+import { Profile } from '../typeorm/entities/Profile';
+import { Role } from '../typeorm/entities/Role';
+import { SheetMetalRoll } from '../typeorm/entities/SheetMetalRoll';
+import { Thickness } from '../typeorm/entities/Thickness';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Category, Product])],
-  controllers: [ProductsController, CategoriesController],
-  providers: [ProductsService, CategoriesService],
+  imports: [
+    TypeOrmModule.forFeature([
+      Category,
+      Color,
+      Customer,
+      Material,
+      Order,
+      Profile,
+      Role,
+      SheetMetalRoll,
+      Thickness,
+    ]),
+  ],
+  controllers: [OrderController],
+  providers: [OrderService],
 })
 export class OrderModule {}
