@@ -36,7 +36,10 @@ export class UsersService {
   }
 
   findByUsername(username: string) {
-    return this.userRepository.findOneBy({ username });
+    return this.userRepository.findOne({
+      where: { username },
+      relations: ['role'],
+    });
   }
 
   updateUser(id: number, updateUserDetails: UpdateUserParams) {

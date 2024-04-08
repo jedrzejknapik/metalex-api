@@ -15,24 +15,20 @@ export class AuthService {
   ) {}
 
   async signup({ username, password }: AuthPayloadDto) {
-    // See if email is in use
     const user = await this.usersService.findByUsername(username);
 
     if (user) {
       throw new BadRequestException('Username already in use.');
     }
 
-    // Hash password
     const salt = randomBytes(8).toString('hex');
     const hash = (await scrypt(password, salt, 32)) as Buffer;
     const result = salt + '.' + hash.toString('hex');
-    // Create new user and save it
-    const newUser = await this.usersService.createUser({
+
+    await this.usersService.createUser({
       username,
       password: result,
     });
-    // return the user
-    return newUser;
   }
 
   async signin({ username, password }: AuthPayloadDto) {
@@ -49,7 +45,7 @@ export class AuthService {
       return null;
     }
 
-    const { id, username: name } = user;
-    return this.jwtService.sign({ id, name });
+    const { id, username: name, role } = user;
+    return this.jwtService.sign({ id, name, role: role.name });
   }
 }

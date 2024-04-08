@@ -1,14 +1,17 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { OrderPosition } from './OrderPosition';
 
-@Entity({ name: 'categories' })
-export class Category {
+@Entity({ name: 'thickness_values' })
+export class Thickness {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column()
   name: string;
 
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.category)
+  @Column()
+  value: number;
+
+  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.thickness)
   orderPositions: OrderPosition[];
 }
