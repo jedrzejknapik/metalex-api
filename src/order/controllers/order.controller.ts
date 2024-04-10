@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { OrderService } from '../services/order.service';
+import { CreateOrderDto } from '../dtos/CreateOrderDto';
 
 @ApiTags('Order')
 @Controller('order')
@@ -12,26 +13,34 @@ export class OrderController {
     return this.orderService.findOrders();
   }
 
-  @Get('dictionaries')
-  async getCategories() {
-    const [categories, profiles, colors, materials, thickness, rolls] =
-      await Promise.all([
-        this.orderService.findCategories(),
-        this.orderService.findProfiles(),
-        this.orderService.findColors(),
-        this.orderService.findMaterials(),
-        this.orderService.findThicknessValues(),
-        this.orderService.findRolls(),
-      ]);
+  @Post()
+  async createOrder(@Body() createOrderPayload: CreateOrderDto) {
+    return await this.orderService.createOrder(createOrderPayload);
+  }
 
-    return {
-      categories,
-      profiles,
-      colors,
-      materials,
-      thickness,
-      rolls,
-    };
+  @Get('profiles')
+  getProfiles() {
+    return this.orderService.findProfiles();
+  }
+
+  @Get('colors')
+  getColors() {
+    return this.orderService.findColors();
+  }
+
+  @Get('materials')
+  getMaterials() {
+    return this.orderService.findMaterials();
+  }
+
+  @Get('thickness')
+  getThickness() {
+    return this.orderService.findThicknessValues();
+  }
+
+  @Get('rolls')
+  getRolls() {
+    return this.orderService.findRolls();
   }
 
   @Get('customers')

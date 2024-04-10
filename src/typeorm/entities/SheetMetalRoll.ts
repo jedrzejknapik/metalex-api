@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderPosition } from './OrderPosition';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'sheet_metal_rolls' })
 export class SheetMetalRoll {
@@ -8,7 +7,4 @@ export class SheetMetalRoll {
 
   @Column()
   name: string;
-
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.roll)
-  orderPositions: OrderPosition[];
 }

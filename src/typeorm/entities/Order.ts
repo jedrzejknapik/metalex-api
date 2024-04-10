@@ -1,12 +1,5 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Customer } from './Customer';
-import { OrderPosition } from './OrderPosition';
 
 @Entity({ name: 'orders' })
 export class Order {
@@ -19,13 +12,9 @@ export class Order {
   @Column()
   date: Date;
 
-  // TODO: add order status table
   @Column()
   status: string;
 
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.order)
-  positions: OrderPosition[];
-
-  @ManyToOne(() => Customer, (customer) => customer.orders)
+  @ManyToOne(() => Customer)
   customer: Customer;
 }

@@ -1,3 +1,5 @@
+import { OrderStatusEnum } from '../utils/types';
+
 export const COLORS_SEED = [
   { name: 'Kremowy biały', value: '#F1EBDC' },
   { name: 'Beżowy', value: '#E1D8B7' },
@@ -31,16 +33,19 @@ export const COLORS_SEED = [
 
 export const CATEGORIES_SEED = [
   {
-    name: 'Blachy',
+    name: 'Blacha gładka',
   },
   {
-    name: 'Blachy trapezowe',
+    name: 'Blacha trapezowa',
   },
   {
-    name: 'Blachy fińskie',
+    name: 'Blachodachówka',
   },
   {
-    name: 'Blachy podbitkowe',
+    name: 'Podbitka',
+  },
+  {
+    name: 'Panel dachowy',
   },
 ];
 
@@ -51,9 +56,6 @@ export const CUSTOMERS_SEED = [
     address: 'ul. Przykładowa 1, 00-001 Warszawa',
     email: 'jan.kowalski@example.com',
     phoneNumber: '123456789',
-    isCompany: false,
-    nip: '',
-    companyName: '',
   },
   {
     firstName: 'Anna',
@@ -61,17 +63,13 @@ export const CUSTOMERS_SEED = [
     address: 'ul. Testowa 2, 50-002 Kraków',
     email: 'anna.nowak@example.com',
     phoneNumber: '987654321',
-    isCompany: false,
-    nip: '',
-    companyName: '',
   },
   {
-    firstName: 'Firma XYZ',
-    lastName: '',
+    firstName: 'Pan',
+    lastName: 'Janusz',
     address: 'ul. Fikcyjna 3, 30-003 Gdańsk',
     email: 'biuro@firma.xyz',
     phoneNumber: '555666777',
-    isCompany: true,
     nip: '1234567890',
     companyName: 'Firma XYZ Sp. z o.o.',
   },
@@ -85,7 +83,27 @@ export const MATERIALS_SEED = [
   { name: 'Ocynk' },
 ];
 
-export const PROFILES_SEED = [{ name: 'T8' }, { name: 'T14' }];
+export const PROFILES_SEED = [
+  { name: 'T8', imageRef: '', category: CATEGORIES_SEED[1] },
+  { name: 'T14', imageRef: '', category: CATEGORIES_SEED[1] },
+  { name: 'T16', imageRef: '', category: CATEGORIES_SEED[1] },
+  { name: 'T18', imageRef: '', category: CATEGORIES_SEED[1] },
+  { name: 'T35', imageRef: '', category: CATEGORIES_SEED[1] },
+  {
+    name: 'Blachodachówka Wiktoria',
+    imageRef: '',
+    category: CATEGORIES_SEED[2],
+  },
+  {
+    name: 'Blachodachówka Scandia',
+    imageRef: '',
+    category: CATEGORIES_SEED[2],
+  },
+  { name: 'Blachodachówka Revers', imageRef: '', category: CATEGORIES_SEED[2] },
+  { name: 'Blachodachówka Fińska', imageRef: '', category: CATEGORIES_SEED[2] },
+  { name: 'Rąbek stojący', imageRef: '', category: CATEGORIES_SEED[4] },
+  { name: 'Podbitka perforowana', imageRef: '', category: CATEGORIES_SEED[3] },
+];
 
 export const ROLES_SEED = [{ name: 'ADMIN' }, { name: 'USER' }];
 
@@ -101,16 +119,73 @@ export const ORDERS_SEED = [
   {
     orderNr: 'ORD123',
     date: new Date('2024-04-01'),
-    status: 'Pending',
+    status: OrderStatusEnum.FULFILLED,
+    customer: CUSTOMERS_SEED[0],
   },
   {
     orderNr: 'ORD124',
     date: new Date('2024-04-02'),
-    status: 'Completed',
+    status: OrderStatusEnum.PENDING,
+    customer: CUSTOMERS_SEED[1],
   },
   {
     orderNr: 'ORD125',
     date: new Date('2024-04-03'),
-    status: 'Pending',
+    status: OrderStatusEnum.UNFULFILLED,
+    customer: CUSTOMERS_SEED[2],
+  },
+];
+
+export const ORDER_POSITIONS_SEED = [
+  {
+    profile: PROFILES_SEED[0],
+    thickness: THICKNESSES_SEED[1],
+    width: 1,
+    color: COLORS_SEED[0],
+    isGlossy: true,
+    isDoubleSided: true,
+    isFirstClass: true,
+    roll: ROLLS_SEED[0],
+    material: MATERIALS_SEED[1],
+    order: ORDERS_SEED[0],
+  },
+  {
+    profile: PROFILES_SEED[0],
+    thickness: THICKNESSES_SEED[1],
+    width: 1,
+    color: COLORS_SEED[0],
+    isGlossy: true,
+    isDoubleSided: true,
+    isFirstClass: true,
+    roll: ROLLS_SEED[0],
+    material: MATERIALS_SEED[1],
+    order: ORDERS_SEED[1],
+  },
+  {
+    profile: PROFILES_SEED[0],
+    thickness: THICKNESSES_SEED[1],
+    width: 1,
+    color: COLORS_SEED[0],
+    isGlossy: true,
+    isDoubleSided: true,
+    isFirstClass: true,
+    roll: ROLLS_SEED[0],
+    material: MATERIALS_SEED[1],
+    order: ORDERS_SEED[2],
+  },
+];
+
+export const ORDER_SHEET_SEED = [
+  {
+    quantity: 3,
+    meters: 2.5,
+    isFoiled: true,
+    orderPosition: ORDER_POSITIONS_SEED[0],
+  },
+  {
+    quantity: 2,
+    meters: 5,
+    isFoiled: false,
+    orderPosition: ORDER_POSITIONS_SEED[0],
   },
 ];

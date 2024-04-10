@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderPosition } from './OrderPosition';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'materials' })
 export class Material {
@@ -8,7 +7,4 @@ export class Material {
 
   @Column({ unique: true })
   name: string;
-
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.material)
-  orderPositions: OrderPosition[];
 }

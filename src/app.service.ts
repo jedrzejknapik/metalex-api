@@ -15,12 +15,13 @@ import {
   COLORS_SEED,
   CUSTOMERS_SEED,
   MATERIALS_SEED,
-  ORDERS_SEED,
   PROFILES_SEED,
   ROLES_SEED,
   ROLLS_SEED,
   THICKNESSES_SEED,
 } from './constants/seed.constant';
+import { OrderSheet } from './typeorm/entities/OrderSheets';
+import { OrderPosition } from './typeorm/entities/OrderPosition';
 
 @Injectable()
 export class AppService {
@@ -43,6 +44,10 @@ export class AppService {
     private readonly rollRepository: Repository<SheetMetalRoll>,
     @InjectRepository(Thickness)
     private readonly thicknessRepository: Repository<Thickness>,
+    @InjectRepository(OrderSheet)
+    private readonly orderSheetRepository: Repository<OrderSheet>,
+    @InjectRepository(OrderPosition)
+    private readonly orderPositionRepository: Repository<OrderPosition>,
   ) {}
 
   async seed<T>(repository: Repository<T>, data: T[]): Promise<void> {
@@ -58,10 +63,6 @@ export class AppService {
       this.seed(this.colorRepository, COLORS_SEED),
       this.seed(this.customerRepository, CUSTOMERS_SEED),
       this.seed(this.materialRepository, MATERIALS_SEED),
-      this.seed(
-        this.orderRepository,
-        ORDERS_SEED.map((order) => ({ ...order, customer: CUSTOMERS_SEED[0] })),
-      ),
       this.seed(this.profileRepository, PROFILES_SEED),
       this.seed(this.roleRepository, ROLES_SEED),
       this.seed(this.rollRepository, ROLLS_SEED),

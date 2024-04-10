@@ -17,6 +17,7 @@ import { Profile } from './typeorm/entities/Profile';
 import { SheetMetalRoll } from './typeorm/entities/SheetMetalRoll';
 import { Thickness } from './typeorm/entities/Thickness';
 import { AppService } from './app.service';
+import { OrderSheet } from './typeorm/entities/OrderSheets';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AppService } from './app.service';
         OrderPosition,
         Profile,
         Role,
+        OrderSheet,
         SheetMetalRoll,
         Thickness,
         User,
@@ -49,8 +51,10 @@ import { AppService } from './app.service';
       Customer,
       Material,
       Order,
+      OrderPosition,
       Profile,
       Role,
+      OrderSheet,
       SheetMetalRoll,
       Thickness,
     ]),
