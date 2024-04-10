@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderPosition } from './OrderPosition';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'thickness_values' })
 export class Thickness {
@@ -9,9 +8,6 @@ export class Thickness {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 5, scale: 2 })
   value: number;
-
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.thickness)
-  orderPositions: OrderPosition[];
 }

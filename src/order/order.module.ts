@@ -11,6 +11,8 @@ import { Profile } from '../typeorm/entities/Profile';
 import { Role } from '../typeorm/entities/Role';
 import { SheetMetalRoll } from '../typeorm/entities/SheetMetalRoll';
 import { Thickness } from '../typeorm/entities/Thickness';
+import { OrderPosition } from '../typeorm/entities/OrderPosition';
+import { OrderSheet } from '../typeorm/entities/OrderSheets';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { Thickness } from '../typeorm/entities/Thickness';
       Customer,
       Material,
       Order,
+      OrderPosition,
+      OrderSheet,
       Profile,
       Role,
       SheetMetalRoll,

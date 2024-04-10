@@ -26,6 +26,12 @@ export enum RoleEnum {
   ADMIN = 'ADMIN',
 }
 
+export enum OrderStatusEnum {
+  PENDING = 'PENDING',
+  FULFILLED = 'FULFILLED',
+  UNFULFILLED = 'UNFULFILLED',
+}
+
 export type CreateRoleParams = {
   name: RoleEnum;
 };

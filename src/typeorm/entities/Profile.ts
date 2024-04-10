@@ -1,5 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderPosition } from './OrderPosition';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from './Category';
 
 @Entity({ name: 'profiles' })
 export class Profile {
@@ -9,6 +9,9 @@ export class Profile {
   @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.profile)
-  orderPositions: OrderPosition[];
+  @Column()
+  imageRef: string;
+
+  @ManyToOne(() => Category)
+  category: Category;
 }

@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderPosition } from './OrderPosition';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'colors' })
 export class Color {
@@ -14,7 +13,4 @@ export class Color {
 
   @Column({ nullable: true })
   imageRef: string;
-
-  @OneToMany(() => OrderPosition, (orderPosition) => orderPosition.color)
-  orderPositions: OrderPosition[];
 }
