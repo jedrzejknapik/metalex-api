@@ -75,7 +75,8 @@ export class OrderService {
 
   async createOrder(order: CreateOrderDto) {
     try {
-      const { orderNr, date, customerId, positions } = order;
+      const { orderNr, date, customerId, positions, price, productQuantity } =
+        order;
 
       const customer = await this.customerRepository.findOneBy({
         id: customerId,
@@ -86,6 +87,8 @@ export class OrderService {
         date,
         status: OrderStatusEnum.PENDING,
         customer,
+        price,
+        productQuantity,
       });
 
       positions.forEach(
