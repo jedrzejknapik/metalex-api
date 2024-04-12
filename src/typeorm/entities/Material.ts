@@ -7,4 +7,7 @@ export class Material {
 
   @Column({ unique: true })
   name: string;
+
+  @Column({ nullable: true })
+  imageRef: string;
 }

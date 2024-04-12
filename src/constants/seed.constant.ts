@@ -56,6 +56,7 @@ export const CUSTOMERS_SEED = [
     address: 'ul. Przykładowa 1, 00-001 Warszawa',
     email: 'jan.kowalski@example.com',
     phoneNumber: '123456789',
+    imageRef: 'images/jan-kowalski.jpeg',
   },
   {
     firstName: 'Anna',
@@ -63,6 +64,7 @@ export const CUSTOMERS_SEED = [
     address: 'ul. Testowa 2, 50-002 Kraków',
     email: 'anna.nowak@example.com',
     phoneNumber: '987654321',
+    imageRef: 'images/anna-nowak.jpeg',
   },
   {
     firstName: 'Pan',
@@ -72,37 +74,54 @@ export const CUSTOMERS_SEED = [
     phoneNumber: '555666777',
     nip: '1234567890',
     companyName: 'Firma XYZ Sp. z o.o.',
+    imageRef: 'images/pan-janusz.jpeg',
   },
 ];
 
 export const MATERIALS_SEED = [
-  { name: 'Stal nierdzewna' },
-  { name: 'Stal' },
-  { name: 'Aluminium' },
-  { name: 'Alucynk' },
-  { name: 'Ocynk' },
+  { name: 'Stal nierdzewna', imageRef: 'images/stal-nierdzewna.jpeg' },
+  { name: 'Stal', imageRef: 'images/stal.jpeg' },
+  { name: 'Aluminium', imageRef: 'images/aluminium.jpeg' },
+  { name: 'Alucynk', imageRef: 'images/alucynk.jpeg' },
+  { name: 'Ocynk', imageRef: 'images/ocynk.jpeg' },
 ];
 
 export const PROFILES_SEED = [
-  { name: 'T8', imageRef: '', category: CATEGORIES_SEED[1] },
-  { name: 'T14', imageRef: '', category: CATEGORIES_SEED[1] },
-  { name: 'T16', imageRef: '', category: CATEGORIES_SEED[1] },
-  { name: 'T18', imageRef: '', category: CATEGORIES_SEED[1] },
-  { name: 'T35', imageRef: '', category: CATEGORIES_SEED[1] },
+  { name: 'T8', imageRef: 'images/t8.jpeg', category: CATEGORIES_SEED[1] },
+  { name: 'T14', imageRef: 'images/t14.jpeg', category: CATEGORIES_SEED[1] },
+  { name: 'T16', imageRef: 'images/t16.jpeg', category: CATEGORIES_SEED[1] },
+  { name: 'T18', imageRef: 'images/t18.jpeg', category: CATEGORIES_SEED[1] },
+  { name: 'T35', imageRef: 'images/t35.jpeg', category: CATEGORIES_SEED[1] },
   {
     name: 'Blachodachówka Wiktoria',
-    imageRef: '',
+    imageRef: 'images/wiktoria.jpeg',
     category: CATEGORIES_SEED[2],
   },
   {
     name: 'Blachodachówka Scandia',
-    imageRef: '',
+    imageRef: 'images/scandia.jpeg',
     category: CATEGORIES_SEED[2],
   },
-  { name: 'Blachodachówka Revers', imageRef: '', category: CATEGORIES_SEED[2] },
-  { name: 'Blachodachówka Fińska', imageRef: '', category: CATEGORIES_SEED[2] },
-  { name: 'Rąbek stojący', imageRef: '', category: CATEGORIES_SEED[4] },
-  { name: 'Podbitka perforowana', imageRef: '', category: CATEGORIES_SEED[3] },
+  {
+    name: 'Blachodachówka Revers',
+    imageRef: 'images/rewers.jpeg',
+    category: CATEGORIES_SEED[2],
+  },
+  {
+    name: 'Blachodachówka Fińska',
+    imageRef: 'images/finska.jpeg',
+    category: CATEGORIES_SEED[2],
+  },
+  {
+    name: 'Rąbek stojący',
+    imageRef: 'images/rabek.jpeg',
+    category: CATEGORIES_SEED[4],
+  },
+  {
+    name: 'Podbitka perforowana',
+    imageRef: 'images/podbitka.jpeg',
+    category: CATEGORIES_SEED[3],
+  },
 ];
 
 export const ROLES_SEED = [{ name: 'ADMIN' }, { name: 'USER' }];

@@ -25,4 +25,7 @@ export class Customer {
 
   @Column({ nullable: true })
   companyName: string;
+
+  @Column({ nullable: true })
+  imageRef: string;
 }

@@ -10,10 +10,16 @@ export class Order {
   orderNr: string;
 
   @Column()
-  date: Date;
+  createdAt: Date;
 
   @Column()
   status: string;
+
+  @Column()
+  price: string;
+
+  @Column()
+  productQuantity: number;
 
   @ManyToOne(() => Customer)
   customer: Customer;
