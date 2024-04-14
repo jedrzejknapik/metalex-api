@@ -75,8 +75,14 @@ export class OrderService {
 
   async createOrder(order: CreateOrderDto) {
     try {
-      const { orderNr, date, customerId, positions, price, productQuantity } =
-        order;
+      const {
+        orderNr,
+        createdAt,
+        customerId,
+        positions,
+        price,
+        productQuantity,
+      } = order;
 
       const customer = await this.customerRepository.findOneBy({
         id: customerId,
@@ -84,7 +90,7 @@ export class OrderService {
 
       const createdOrder = await this.orderRepository.save({
         orderNr,
-        date,
+        createdAt,
         status: OrderStatusEnum.PENDING,
         customer,
         price,

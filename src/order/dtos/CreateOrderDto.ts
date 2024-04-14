@@ -2,7 +2,7 @@ import { CreateOrderPositionDto } from './CreateOrderPositionDto';
 
 export interface CreateOrderDto {
   orderNr: string;
-  date: Date;
+  createdAt: Date;
   customerId: number;
   price: string;
   productQuantity: number;
